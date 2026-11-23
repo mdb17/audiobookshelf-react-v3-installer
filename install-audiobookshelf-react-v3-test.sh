@@ -68,10 +68,11 @@ main() {
   require_command pveam
   require_command pvesm
   require_command pvesh
+  require_command pveversion
   require_command awk
   require_command dpkg
 
-  [[ -r /etc/pve/version ]] || die "This host does not appear to be Proxmox VE."
+  pveversion -v >/dev/null 2>&1 || die "This host does not appear to be Proxmox VE."
   [[ -d "$MEDIA_SOURCE" ]] || die "Required host directory is missing: $MEDIA_SOURCE"
   [[ -d "$BACKUPS_SOURCE" ]] || die "Required host directory is missing: $BACKUPS_SOURCE"
 
