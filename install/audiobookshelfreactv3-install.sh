@@ -10,8 +10,10 @@ network_check
 update_os
 
 msg_info "Installing Docker"
-$STD apt-get install -y --no-install-recommends ca-certificates docker.io
+$STD apt-get install -y --no-install-recommends ca-certificates curl
+curl -fsSL https://get.docker.com | sh
 systemctl enable --now docker
+command -v docker >/dev/null 2>&1
 msg_ok "Installed Docker"
 
 install -d -m 0750 /opt/audiobookshelf-react-v3/config /opt/audiobookshelf-react-v3/metadata
